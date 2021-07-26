@@ -40,7 +40,9 @@ components:
       memoryLimit: 64M
       mountSources: true
 
-
+  - name: gradle
+    volume:
+      size: 1G
   - name: m2
     volume:
       size: 1G
