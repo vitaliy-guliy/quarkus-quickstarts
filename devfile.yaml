@@ -20,7 +20,7 @@ components:
           path: /hello/greeting/che-user
       volumeMounts:
         - name: m2
-          path: /home/jboss/.m2
+          path: /home/user/.m2
       memoryLimit: 4G
       mountSources: true
 
@@ -32,14 +32,11 @@ components:
       memoryLimit: 64M
       mountSources: true
 
-  - name: gradle
-    volume:
-      size: 1G
   - name: m2
     volume:
       size: 1G
 commands:
-  - id: package
+  - id: 1-package
     exec:
       component: tools
       workingDir: ${PROJECTS_ROOT}/quarkus-quickstarts/getting-started
@@ -47,7 +44,7 @@ commands:
       group:
         kind: build
         isDefault: true
-  - id: packagenative
+  - id: 2-packagenative
     exec:
       label: "Package Native"
       component: tools
@@ -55,7 +52,7 @@ commands:
       commandLine: "./mvnw package -Dnative -Dmaven.test.skip -Dquarkus.native.native-image-xmx=2G"
       group:
         kind: build
-  - id: startdev
+  - id: 3-startdev
     exec:
       label: "Start Development mode (Hot reload + debug)"
       component: tools
@@ -65,7 +62,7 @@ commands:
         kind: run
         isDefault: true
 
-  - id: startnative
+  - id: 4-startnative
     exec:
       label: "Start Native"
       component: ubi-minimal
