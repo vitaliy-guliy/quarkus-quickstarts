@@ -3,7 +3,7 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Attach to Remote Quarkus Appe",
+            "name": "Attach to Remote Quarkus App",
             "request": "attach",
             "hostName": "localhost",
             "port": 5005
