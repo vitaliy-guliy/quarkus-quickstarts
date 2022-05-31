@@ -23,6 +23,18 @@ components:
           path: /home/user/.m2
       memoryLimit: 4G
       mountSources: true
+
+  - name: quarkus-mandrel
+    container:
+      image: registry.redhat.io/quarkus/mandrel-21-rhel8:21.3-21
+      command: ['tail']
+      args: ['-f', '/dev/null']
+      memoryLimit: 1G
+      volumeMounts:
+        - name: m2
+          path: /home/user/.m2
+      mountSources: true
+
   - name: m2
     volume:
       size: 1G
@@ -44,3 +56,19 @@ commands:
       group:
         kind: run
         isDefault: true
+  - id: 3-packagenative
+    exec:
+      label: "Package Native"
+      component: quarkus-mandrel
+      workingDir: ${PROJECTS_ROOT}/quarkus-quickstarts/getting-started
+      commandLine: "./mvnw package -Dnative -Dmaven.test.skip -Dquarkus.native.native-image-xmx=2G"
+      group:
+        kind: build
+  - id: 4-startnative
+    exec:
+      label: "Start Native"
+      component: quarkus-mandrel
+      workingDir: ${PROJECTS_ROOT}/quarkus-quickstarts/getting-started/target
+      commandLine: "./getting-started-1.0.0-SNAPSHOT-runner"
+      group:
+        kind: run
