@@ -31,7 +31,7 @@ commands:
     exec:
       component: tools
       workingDir: ${PROJECTS_ROOT}/quarkus-quickstarts/getting-started
-      commandLine: "./mvnw package"
+      commandLine: "mvn package"
       group:
         kind: build
         isDefault: true
@@ -40,7 +40,7 @@ commands:
       label: "Start Development mode (Hot reload + debug)"
       component: tools
       workingDir: ${PROJECTS_ROOT}/quarkus-quickstarts/getting-started
-      commandLine: "./mvnw compile quarkus:dev"
+      commandLine: "mvn compile quarkus:dev"
       group:
         kind: run
         isDefault: true
