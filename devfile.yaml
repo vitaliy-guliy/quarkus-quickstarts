@@ -4,7 +4,7 @@ metadata:
 components:
   - name: tools
     container:
-      image: registry.redhat.io/devspaces/udi-rhel8:3.9 
+      image: registry.redhat.io/devspaces/udi-rhel8:3.9
       env:
         - name: QUARKUS_HTTP_HOST
           value: 0.0.0.0
@@ -21,7 +21,10 @@ components:
       volumeMounts:
         - name: m2
           path: /home/user/.m2
-      memoryLimit: 4G
+      cpuLimit: '4'
+      cpuRequest: '1'
+      memoryLimit: '8G'
+      memoryRequest: '4G'
       mountSources: true
   - name: m2
     volume:
